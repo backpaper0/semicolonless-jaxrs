@@ -15,11 +15,11 @@ repositories {
 
 dependencies {
     providedCompile 'javax:javaee-api:7.0'
-    testCompile 'fish.payara.extras:payara-micro:4.1.1.154'
+    archives 'fish.payara.extras:payara-micro:4.1.1.154'
 }
 
 task run(type:Exec) {
-    def payaraJar = configurations.testCompile.find { it.name ==~ /payara-micro.*/ }
+    def payaraJar = configurations.archives.find { it.name ==~ /payara-micro.*/ }
     def warFile = war.archivePath
     commandLine 'java', '-jar', "$payaraJar", '--deploy', "$warFile"
 }
